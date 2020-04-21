@@ -17,11 +17,86 @@ class Results extends React.Component{
     
     constructor(props) {    
         super(props);
+        this.state = {
+            result: ''
+        }
+      }
+
+
+
+    callAPI = async (str) => {
+        let apiUrl = process.env.REACT_APP_API_URL;
+            fetch(apiUrl,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type':'image/jpeg'
+                    },
+                    body:str
+                })
+            // .then(response => response.body?.getReader())
+            // .then(reader => reader?.read())
+            // .then(content => new Blob([content], {type:'image/jpg'}))
+            //.then(content => console.log(`Content: ${content}`))
+            //.then(response => response.blob())
+            .then(response => response.text())
+            .then(result => console.log(result))
+            // .then(blob => URL.createObjectURL(blob))
+            // .then(url => this.setState({result: url}))
+            //.then(response => console.log(response))
+            // .then(stream => stream.getReader())
+            // .then(reader => reader.read())
+            // .then(done, value => console.log(value))
+            // .then(response => {
+            //     //const reader = response.body.getReader();
+            //     let reader = response.body;
+            //     reader.onload = () => {
+            //         this.setState({result: reader.result})
+            //     }
+            //     reader.readAsArrayBuffer();
+            //     // reader.read().then(value => {
+            //     //     let blob = new Blob([new Uint8Array(value)]);
+            //     //     let url = URL.createObjectURL(blob);
+            //     //     console.log(value);
+            //     //     this.setState({result: url})
+            //     // });
+            //     });
+            //})
+            // .then(str => this.str2ab(str))
+            // .then(ab => new Blob([ab]))
+            // .then(blob => URL.createObjectURL(blob))
+           // .then(url => this.setState({result: url}))
+                //let resultUrl = URL.createObjectURL(response.body);
+            //     let reader = response.body.getReader();
+
+            //     this.setState({result: resultUrl})
+            // })
+            // .then(response => response.blob())
+            // .then(data => {
+            //     let resultUrl = URL.createObjectURL(data);
+            //     this.setState({result: resultUrl})
+            // })
+    
+    }
+
+    componentDidMount = () => {
+        this.callAPI(this.props.location.state.binaryStr);
+    }
+
+    str2ab = (str) => {
+        var buf = new ArrayBuffer(str.length * 2); // 2 bytes for each char
+        var bufView = new Uint16Array(buf);
+        for (var i = 0, strLen = str.length; i < strLen; i++) {
+          bufView[i] = str.charCodeAt(i);
+        }
+        return buf;
       }
 
     render(){
 
-        console.log(`URL: ${this.props.location.state.content}`)
+        //console.log(`Result: ${this.props.location.state.binaryStr}`);
+        console.log(`Result: ${this.state.result}`);
+
         return(
             <div className="App">
 
@@ -29,7 +104,7 @@ class Results extends React.Component{
 
                         <div className="col-lg-6">
                             <div id="results-output" className="results-panel">
-                            <ImageOutput/>
+                            <ImageOutput  mode={this.props.location.state.mode} content={this.state.result}/>
                             </div>
                         </div>
 

@@ -9,7 +9,8 @@ class Action extends React.Component{
         this.state = {
             go: false,
             mode: 'url',
-            content: ''
+            content: '',
+            binaryStr: ''
         }
     }
 
@@ -51,16 +52,24 @@ class Action extends React.Component{
         console.log("Send Request");
         if(this.validUrl()){
             console.log("Valid URL");
-            this.setState({go: true, mode: 'url', content: 'https://images.sudouest.fr/2020/01/21/5e27092366a4bd6733ae5f03/widescreen/1000x500/plus-de-14700-bergers.jpg?v1'})
+            this.setState({go: true, mode: 'url', content: 'https://images.sudouest.fr/2020/01/21/5e27092366a4bd6733ae5f03/widescreen/1000x500/plus-de-14700-bergers.jpg?v1'});
         }
         else if(this.validText()){
             console.log("Valid Text");
-            this.setState({go: true, mode: 'text', content: 'text'})
+            this.setState({go: true, mode: 'text', content: 'text'});
         }
         else if(this.validFile()){
             let url = this.props.uploadFiles()[0];
-            this.setState({go: true, mode: 'file', content: url})
-            
+
+            let file = this.props.files[0];
+
+            let reader = new FileReader();
+            reader.onload = () => {
+                this.setState({binaryStr: reader.result, go: true, mode: 'file', content: url})
+            }
+           let file_str = reader.readAsBinaryString(file);
+
+        //    this.setState({go: true, mode: 'file', content: url});
         }
         else{
             console.log("Please provide a valid input.")
@@ -82,7 +91,8 @@ class Action extends React.Component{
                         pathname: 'results',
                         state: {
                             mode: this.state.mode,
-                            content: this.state.content
+                            content: this.state.content,
+                            binaryStr: this.state.binaryStr
                         }
                     }} /> 
                 : ''}
