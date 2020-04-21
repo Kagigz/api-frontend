@@ -1,0 +1,47 @@
+.results-panel{
+    height:100vh;
+}
+
+#results-input{
+    background-color: black;
+}
+
+#results-output{
+    background-color: grey;
+}
+ 
+#bottom{
+    position:absolute;
+    left:50%;
+    transform: translate(-50%,0);
+    bottom:10vh;
+}
+
+#btn-tryAgain{
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid #CCCCCC;
+    padding: 20px;
+}
+  
+.imageView{
+    border: 2px solid white;
+    background-color: white;
+    height: 60vh;
+    position: relative;
+    left:50%;
+    transform: translate(-50%,0);
+    width: 80%;
+}
+
+.imgFile{
+    max-width:100%;
+    max-height:100%;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+  }
+  
