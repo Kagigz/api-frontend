@@ -1,3 +1,5 @@
+@import './index.scss';
+
 .results-panel{
     height:100vh;
 }
@@ -25,18 +27,19 @@
 }
   
 .imageView{
-    border: 2px solid white;
-    background-color: white;
     height: 60vh;
+    width: 80%;
     position: relative;
     left:50%;
-    transform: translate(-50%,0);
+    top:40vh;
+    transform: translate(-50%,-50%);
     width: 80%;
 }
 
 .imgFile{
     max-width:100%;
     max-height:100%;
+    border: 2px solid white;
     position: absolute;  
     top: 0;  
     bottom: 0;  

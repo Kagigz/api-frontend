@@ -48,11 +48,26 @@ class Action extends React.Component{
         return false;
     }
 
-    sendRequest = () => {
+    sendRequest = async () => {
         console.log("Send Request");
         if(this.validUrl()){
             console.log("Valid URL");
-            this.setState({go: true, mode: 'url', content: 'https://images.sudouest.fr/2020/01/21/5e27092366a4bd6733ae5f03/widescreen/1000x500/plus-de-14700-bergers.jpg?v1'});
+            let imgUrl = this.props.urlRef.current.value;
+            console.log(`Image URL: ${imgUrl}`);
+            let response = await fetch(imgUrl);
+            let blob = await response.blob();
+
+            console.log(response);
+            
+        
+            let reader = new FileReader();
+            
+            reader.onload = () => {
+                this.setState({go: true, mode: 'url', imgUrl: imgUrl, imgData: reader.result});
+            }
+            
+            let imgData = reader.readAsArrayBuffer(blob);
+                      
         }
         else if(this.validText()){
             console.log("Valid Text");
@@ -65,7 +80,7 @@ class Action extends React.Component{
 
             let reader = new FileReader();
             reader.onload = () => {
-                this.setState({binaryStr: reader.result, go: true, mode: 'file', content: url})
+                this.setState({go: true, mode: 'file', imgUrl: url, imgData: reader.result})
             }
            let file_str = reader.readAsArrayBuffer(file);
 
@@ -88,11 +103,11 @@ class Action extends React.Component{
                 {
                 this.state.go ?
                     <Redirect to={{
-                        pathname: 'results',
+                        pathname: 'loading',
                         state: {
                             mode: this.state.mode,
-                            content: this.state.content,
-                            binaryStr: this.state.binaryStr
+                            imgUrl: this.state.imgUrl,
+                            imgData: this.state.imgData
                         }
                     }} /> 
                 : ''}

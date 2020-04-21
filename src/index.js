@@ -6,6 +6,7 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 
 import App from './App';
+import LoadingScreen from './components/loadingScreen'
 import Results from './Results'
 
 import './index.scss';
@@ -17,6 +18,7 @@ const routing = (
 <Router>
 <div>
 <Route exact path="/" component={App} />
+<Route path="/loading" component={LoadingScreen} />
 <Route path="/results" component={Results} />
 </div>
 </Router>
