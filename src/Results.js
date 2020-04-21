@@ -34,48 +34,9 @@ class Results extends React.Component{
                     },
                     body:str
                 })
-            // .then(response => response.body?.getReader())
-            // .then(reader => reader?.read())
-            // .then(content => new Blob([content], {type:'image/jpg'}))
-            //.then(content => console.log(`Content: ${content}`))
-            //.then(response => response.blob())
-            .then(response => response.text())
-            .then(result => console.log(result))
-            // .then(blob => URL.createObjectURL(blob))
-            // .then(url => this.setState({result: url}))
-            //.then(response => console.log(response))
-            // .then(stream => stream.getReader())
-            // .then(reader => reader.read())
-            // .then(done, value => console.log(value))
-            // .then(response => {
-            //     //const reader = response.body.getReader();
-            //     let reader = response.body;
-            //     reader.onload = () => {
-            //         this.setState({result: reader.result})
-            //     }
-            //     reader.readAsArrayBuffer();
-            //     // reader.read().then(value => {
-            //     //     let blob = new Blob([new Uint8Array(value)]);
-            //     //     let url = URL.createObjectURL(blob);
-            //     //     console.log(value);
-            //     //     this.setState({result: url})
-            //     // });
-            //     });
-            //})
-            // .then(str => this.str2ab(str))
-            // .then(ab => new Blob([ab]))
-            // .then(blob => URL.createObjectURL(blob))
-           // .then(url => this.setState({result: url}))
-                //let resultUrl = URL.createObjectURL(response.body);
-            //     let reader = response.body.getReader();
-
-            //     this.setState({result: resultUrl})
-            // })
-            // .then(response => response.blob())
-            // .then(data => {
-            //     let resultUrl = URL.createObjectURL(data);
-            //     this.setState({result: resultUrl})
-            // })
+            .then(response => response.blob())
+            .then(blob => URL.createObjectURL(blob))
+            .then(url => this.setState({result: url}))
     
     }
 

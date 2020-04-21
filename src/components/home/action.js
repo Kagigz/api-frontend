@@ -67,7 +67,7 @@ class Action extends React.Component{
             reader.onload = () => {
                 this.setState({binaryStr: reader.result, go: true, mode: 'file', content: url})
             }
-           let file_str = reader.readAsBinaryString(file);
+           let file_str = reader.readAsArrayBuffer(file);
 
         //    this.setState({go: true, mode: 'file', content: url});
         }
