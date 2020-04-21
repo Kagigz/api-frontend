@@ -12,7 +12,7 @@ class ImageInput extends React.Component{
 
         return(
         <div>
-            Image Input
+            <div className="title">Image Input</div>
 
             <ImageView mode={this.props.mode} content={this.props.content}/>
         </div>

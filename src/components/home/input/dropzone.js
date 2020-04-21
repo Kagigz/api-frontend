@@ -58,9 +58,11 @@ class Dropzone extends React.Component{
 
     render(){
 
+        console.log(`Dropzone file uploaded: ${this.props.fileUploaded}`);
+
         return(
             <div
-                className={`dropzone ${this.state.hightlight ? "highlight" : ""}`}
+                className={`input dropzone ${this.state.hightlight ? "dropzoneHighlight" : ""} ${this.props.fileUploaded ? "hidden": ""}`}
                 onClick={this.openFileDialog}
                 onDragOver={this.onDragOver}
                 onDragLeave={this.onDragLeave}
@@ -71,13 +73,12 @@ class Dropzone extends React.Component{
                 <img
                     alt="upload"
                     className="icon"
-                    src="imgs/upload-icon.svg"
+                    src="imgs/icons/upload-icon.svg"
                 />
                 <input
                     ref={this.props.refId}
                     className="fileInput"
                     type="file"
-                    multiple
                     onChange={this.onFilesAdded}
                 />
             </div>

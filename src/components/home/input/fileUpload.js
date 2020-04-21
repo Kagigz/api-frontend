@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Dropzone from './dropzone'
+import FileZone from './filezone'
 import Progress from './progress'
 
 class FileUpload extends React.Component{
@@ -111,26 +112,17 @@ class FileUpload extends React.Component{
             <div>
                 <div className="upload">
                     <div className="content">
-                        <Dropzone
-                            onFilesAdded={this.props.onFilesAdded}
-                            disabled={this.state.uploading || this.state.successfullUploaded}
-                            refId={this.props.refId}
-                        />
+
+                      <FileZone fileName={this.props.fileName} clearFiles={this.props.clearFiles} fileUploaded={this.props.fileUploaded}/>
+                      <Dropzone
+                          onFilesAdded={this.props.onFilesAdded}
+                          disabled={this.state.uploading || this.state.successfullUploaded}
+                          refId={this.props.refId}
+                          fileUploaded={this.props.fileUploaded}
+                      />
+                        
                     </div>
-                    <div className="files">
-                        {this.props.files.map(file => {
-                            return (
-                                <div key={file.name} className="row">
-                                <span className="filename">{file.name}</span>
-                                {this.renderProgress(file)}
-                                </div>
-                            );
-                            })
-                        }
-                    </div>
-                    <div className="actions">
-                        {this.renderActions()}
-                    </div>
+                    
                 </div>
             </div>
         )

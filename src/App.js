@@ -13,11 +13,10 @@ function App() {
 
       <div id="description-wrapper">
         <div className='row no-gutters'>
-          <div id="description" className='col-md-8 col-lg-6 offset-lg-3 offset-md-2'>
+          <div id="description" className='accentBox col-md-8 col-lg-6 offset-lg-3 offset-md-2'>
             <Description/>
           </div>
         </div>
-        
       </div>
 
       <InputZone/>

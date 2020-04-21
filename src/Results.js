@@ -20,10 +20,19 @@ class Results extends React.Component{
 
     render(){
 
-        const executionTime = this.props.location.state.executionTime
-        var executionTimeStr = ""
-        if(executionTime)
-            executionTimeStr = `Executed in ${executionTime/1000} s`
+        var executionTimeStr = "", contentOutput = "", contentInput = "", mode = "";
+        try{
+            contentOutput = this.props.location.state.result;
+            contentInput = this.props.location.state.imgUrl;
+            mode = this.props.location.state.mode;
+            var executionTime = this.props.location.state.executionTime;
+            
+            if(executionTime)
+                executionTimeStr = `Executed in ${executionTime/1000} s`;
+        }
+        catch(error){
+            console.error("Cannot read props.");
+        }
     
 
         return(
@@ -33,29 +42,29 @@ class Results extends React.Component{
 
                         <div className="col-lg-6">
                             <div id="results-output" className="results-panel">
-                            <ImageOutput  mode={this.props.location.state.mode} content={this.props.location.state.result}/>
+                            <ImageOutput  mode={mode} content={contentOutput}/>
                             </div>
                         </div>
 
                         <div className="col-lg-6 order-lg-first">
                             <div id="results-input" className="results-panel">
-                            <ImageInput mode={this.props.location.state.mode} content={this.props.location.state.imgUrl}/>
+                            <ImageInput mode={mode} content={contentInput}/>
                             </div>
                         </div>
                     </div>
             
             
                 <div id="bottom">
-                    <div id="btn-tryAgain">
+                    <div id="btn-tryAgain" className="btn">
                         <Link to={{
                             pathname: '/'
                             }}>TRY AGAIN</Link>
                     </div>
-                    <div id="executionTime">
-                        {executionTimeStr}
-                    </div>
                 </div>
-
+                
+                <div id="executionTime">
+                        {executionTimeStr}
+                </div>
         
             </div>
         )

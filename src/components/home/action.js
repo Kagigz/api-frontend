@@ -10,7 +10,7 @@ class Action extends React.Component{
             go: false,
             mode: 'url',
             content: '',
-            binaryStr: ''
+            imgData: ''
         }
     }
 
@@ -83,8 +83,6 @@ class Action extends React.Component{
                 this.setState({go: true, mode: 'file', imgUrl: url, imgData: reader.result})
             }
            let file_str = reader.readAsArrayBuffer(file);
-
-        //    this.setState({go: true, mode: 'file', content: url});
         }
         else{
             console.log("Please provide a valid input.")
@@ -98,7 +96,7 @@ class Action extends React.Component{
         console.log(this.state.content);
 
         return(
-            <div className='btn-go' onClick={this.sendRequest}>
+            <div id="btn-go" className='btn' onClick={this.sendRequest}>
                 GO!
                 {
                 this.state.go ?

@@ -13,7 +13,7 @@ class URLInput extends React.Component{
     render(){
 
         return(
-            <div id="urlInputWrapper">
+            <div id="urlInputWrapper" className="input">
                 <input type="text" ref={this.props.refId} className="form-control" placeholder="URL (image, audio, video)" aria-label="url"/>
             </div>
         )

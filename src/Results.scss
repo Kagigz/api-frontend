@@ -5,11 +5,12 @@
 }
 
 #results-input{
-    background-color: black;
+    background-color: $bgColor;
+    color: $textColor;
 }
 
 #results-output{
-    background-color: grey;
+    background-color: $accentColor;
 }
  
 #bottom{
@@ -20,9 +21,6 @@
 }
 
 #btn-tryAgain{
-    background-color: white;
-    border-radius: 5px;
-    border: 2px solid #CCCCCC;
     padding: 20px;
 }
   
@@ -31,7 +29,7 @@
     width: 80%;
     position: relative;
     left:50%;
-    top:40vh;
+    top:35vh;
     transform: translate(-50%,-50%);
     width: 80%;
 }
@@ -48,3 +46,9 @@
     margin: auto;
   }
   
+#executionTime{
+    background-color: black;
+    width: 100%;
+    position: absolute;
+    bottom:0.5px;
+}

@@ -13,7 +13,7 @@ class ImageOutput extends React.Component{
 
         return(
         <div>
-            Image Output
+            <div className="title">Image Output</div>
 
             <ImageView  mode={this.props.mode} content={this.props.content}/>
         </div>
