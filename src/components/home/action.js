@@ -38,9 +38,10 @@ class Action extends React.Component{
     }
 
     validFile = () => {
+
         try{
-        if(this.props.fileRef.current.value != '')
-            return true;
+            if(this.props.files.length > 0)
+                return true;
         }
         catch(e){
             console.error("File input is not defined.")

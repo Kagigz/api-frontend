@@ -1,13 +1,17 @@
 /* COLORS */
-$bgColor: #353535;
-$textColor: #cccccc;
-$accentColor: #cccccc;
-$accentTextColor: #353535;
-$btnColor: #cccccc;
-$btnTextColor: #353535;
-$btnColorHover: #353535;
-$btnTextColorHover: #cccccc;
-$highlightColor: white;
+$bgColor: #2d2d2d;
+$textColor: #ffffff;
+$accentColor: #ababab;
+$accentTextColor: #000000;
+$contrastingColor: #8d2663;
+$btnColor: #8d2663;
+$btnTextColor: #ababab;
+$btnColorHover: #8a446d;
+$btnTextColorHover: #ffffff;
+$highlightBlockColor: #8d2663;
+$highlightBorderColor: #2d2d2d;
+$borderColor: #000000;
+$shadowColor: #000000;
 
 /* FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&family=Montserrat:wght@400;900&family=Roboto+Mono:wght@300&display=swap');
@@ -26,7 +30,8 @@ $btnFontSize: 1.5em;
 
 
 /* DESIGN */
-$shadow: 5px 5px 5px black;
+$shadow: 5px 5px 5px $shadowColor;
 $corners: 5px;
-$btnBorders: 2px solid black;
-$btnBordersHover: 2px solid black;
+$btnBorders: 2px solid $borderColor;
+$btnBordersHover: 2px solid $borderColor;
+$inputBoxShadow: 0px 0px 10px $highlightBorderColor;

@@ -75,7 +75,7 @@ class InputZone extends React.Component{
                     </div>
                     <div className='row'>
                     <div className='col-md-3'>Enter URL:</div>
-                    <div className='col-md-9'><URLInput refId={this.urlInputRef}/></div>
+                    <div className='col-md-9'><URLInput refId={this.urlInputRef} fileUploaded={this.state.fileUploaded}/></div>
                     </div>
                     <div className='row' id="fileUpload">
                     <div className='col-md-3'>Or Upload File:</div>

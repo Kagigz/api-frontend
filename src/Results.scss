@@ -4,6 +4,10 @@
     height:100vh;
 }
 
+.title {
+    margin-bottom: 32px;
+}
+
 #results-input{
     background-color: $bgColor;
     color: $textColor;
@@ -11,6 +15,7 @@
 
 #results-output{
     background-color: $accentColor;
+    color: $accentTextColor;
 }
  
 #bottom{
@@ -37,7 +42,8 @@
 .imgFile{
     max-width:100%;
     max-height:100%;
-    border: 2px solid white;
+    border: $btnBorders;
+    border-radius: $corners;
     position: absolute;  
     top: 0;  
     bottom: 0;  
@@ -47,7 +53,8 @@
   }
   
 #executionTime{
-    background-color: black;
+    background-color: $borderColor;
+    padding:5px;
     width: 100%;
     position: absolute;
     bottom:0.5px;

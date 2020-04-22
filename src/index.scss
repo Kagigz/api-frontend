@@ -1,5 +1,5 @@
 @import '~bootstrap/scss/bootstrap.scss';
-@import './theme.scss';
+@import './dark-theme.scss';
 
 body {
   margin: 0;
@@ -27,6 +27,7 @@ body {
   font-family: $titleFontFamily;
   font-weight: $titleFontWeight;
   font-size: $titleFontSize;
+  color: $contrastingColor;
 }
 
 code {
@@ -64,6 +65,15 @@ code {
   border-radius: $corners;
 }
 
+.form-control{
+  border: $btnBorders;
+}
+
+.form-control:focus{
+  box-shadow: $inputBoxShadow;
+  border: $btnBorders;
+}
+
 .dropzone {
   height: 200px;
   background-color: $accentColor;
@@ -75,7 +85,7 @@ code {
 }
 
 .dropzoneHighlight {
-  background-color: $highlightColor;
+  background-color: $highlightBlockColor;
 }
 
 .clickable{
@@ -86,42 +96,6 @@ code {
   display: none;
 }
 
-
-.scrollbar
-{
-  border: 2px solid $dark;
-  height: 60vh;
-
-    float: right;
-    background: #F5F5F5;
-    overflow-y: scroll;
-}
-
-.scrollbar::-webkit-scrollbar-track
-{
-    -webkit-box-shadow: inset 0 0 6px #d7d7d7;
-    border-radius: 10px;
-    background-color:$white;
-}
-
-.scrollbar::-webkit-scrollbar
-{
-    width: 12px;
-    background-color: $light;
-}
-
-.scrollbar::-webkit-scrollbar-thumb
-{
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px #d7d7d7;
-    background-color: $dark;
-}
-
-.nameConfidenceTitle{
-  font-size: 12px;
-}
-
-.progress-bar{
-  background-color:$dark;
-  height:16px;
+.biggerFont{
+  font-size: 1.8em;
 }

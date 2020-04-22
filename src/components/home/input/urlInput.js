@@ -14,7 +14,7 @@ class URLInput extends React.Component{
 
         return(
             <div id="urlInputWrapper" className="input">
-                <input type="text" ref={this.props.refId} className="form-control" placeholder="URL (image, audio, video)" aria-label="url"/>
+                <input type="text" ref={this.props.refId} className="form-control" placeholder={`URL to ${process.env.REACT_APP_INPUT_TYPE} file`} aria-label="url" disabled={this.props.fileUploaded} />
             </div>
         )
     }

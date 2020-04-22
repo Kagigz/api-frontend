@@ -2,9 +2,12 @@
 
 #loadingScreen{
     height:100vh;
-    background-color: black;
-    color: white;
+    color: $contrastingColor;
     text-align: center;
+}
+
+.title{
+    color: $textColor;
 }
 
 #loadingContent{
