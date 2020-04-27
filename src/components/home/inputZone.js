@@ -60,7 +60,34 @@ class InputZone extends React.Component{
         // }
       }
 
+    renderUI = (inputType) => {
 
+      if (inputType === "text" || inputType === "json"){
+        var format = "Text";
+        if(inputType === "json")
+          format = "JSON";
+        return (
+            <div className='row'>
+              <div className='col-md-10 offset-md-1'><TextInput refId={this.textInputRef} inputType={this.props.inputType}/></div>
+            </div>
+        )
+      }
+      else{
+        return (
+            <div>
+              <div className='row'>
+                <div className='col-md-3'>Enter URL:</div>
+                <div className='col-md-9'><URLInput refId={this.urlInputRef} fileUploaded={this.state.fileUploaded} inputType={this.props.inputType}/></div>
+              </div>
+              <div className='row' id="fileUpload">
+                <div className='col-md-3'>Or Upload File:</div>
+                <div className='col-md-9'><FileUpload onFilesAdded={this.onFilesAdded} fileUploaded={this.state.fileUploaded} fileName={this.state.fileName} refId={this.fileInputRef} clearFiles={this.clearFiles}/></div>            
+              </div>
+            </div>
+        )
+      }
+
+    }
 
     render(){
 
@@ -73,14 +100,9 @@ class InputZone extends React.Component{
                     <div className='title'>
                       INPUT
                     </div>
-                    <div className='row'>
-                    <div className='col-md-3'>Enter URL:</div>
-                    <div className='col-md-9'><URLInput refId={this.urlInputRef} fileUploaded={this.state.fileUploaded}/></div>
-                    </div>
-                    <div className='row' id="fileUpload">
-                    <div className='col-md-3'>Or Upload File:</div>
-                    <div className='col-md-9'><FileUpload onFilesAdded={this.onFilesAdded} fileUploaded={this.state.fileUploaded} fileName={this.state.fileName} refId={this.fileInputRef} clearFiles={this.clearFiles}/></div>            
-                    </div>
+                    
+                    {this.renderUI(this.props.inputType)}
+
                 </div>
                 </div>
                 

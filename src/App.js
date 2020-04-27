@@ -8,6 +8,10 @@ import InputZone from './components/home/inputZone'
 
 function App() {
 
+  var inputType = process.env.REACT_APP_INPUT_TYPE;
+  if (inputType !== "image" && inputType !== "json" && inputType !== "text" && inputType !== "file")
+    inputType = "text"
+
   return (
     <div className="App">
 
@@ -19,7 +23,7 @@ function App() {
         </div>
       </div>
 
-      <InputZone/>
+      <InputZone inputType={inputType}/>
 
     </div>
   

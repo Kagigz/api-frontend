@@ -99,3 +99,14 @@ code {
 .biggerFont{
   font-size: 1.8em;
 }
+
+.textBlockWrapper{
+  height: 30vh;
+  text-align: start;
+}
+
+.textBlockInput{
+  position: relative;
+  height: 100%;
+  background-color: $accentColor;
+}

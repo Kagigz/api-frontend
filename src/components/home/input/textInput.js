@@ -9,9 +9,21 @@ class TextInput extends React.Component{
 
     render(){
 
+        var placeholder = ""
+        switch(this.props.inputType){
+            case "text":
+                placeholder = "Enter Text";
+                break;
+            case "json":
+                placeholder = "Enter JSON";
+                break;
+            default:
+                break;
+        }
+
         return(
-        <div>
-            Text Input
+        <div className="textBlockWrapper">
+            <input type="text" className="textBlockInput form-control" ref={this.props.refId} placeholder={placeholder} aria-label="text"/>
         </div>
         )
     }

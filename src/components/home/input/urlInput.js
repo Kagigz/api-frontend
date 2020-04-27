@@ -11,10 +11,21 @@ class URLInput extends React.Component{
       }
 
     render(){
+        var placeholder = ""
+        switch(this.props.inputType){
+            case "image":
+                placeholder = "URL to image file";
+                break;
+            case "file":
+                placeholder = "File URL";
+                break;
+            default:
+                break;
+        }
 
         return(
             <div id="urlInputWrapper" className="input">
-                <input type="text" ref={this.props.refId} className="form-control" placeholder={`URL to ${process.env.REACT_APP_INPUT_TYPE} file`} aria-label="url" disabled={this.props.fileUploaded} />
+                <input type="text" ref={this.props.refId} className="form-control" placeholder={placeholder} aria-label="url" disabled={this.props.fileUploaded} />
             </div>
         )
     }
