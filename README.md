@@ -16,7 +16,7 @@ It is customizable to accept text, json, images or files as input and to return 
 Create an .env file with the following settings:
 
 ```
-REACT_APP_API_URL="http://localhost:7071/api/ImageTransform"
+REACT_APP_API_URL="<YOUR_API_ENDPOINT>"
 REACT_APP_INPUT_TYPE="image"
 REACT_APP_OUTPUT_TYPE="image"
 ```
