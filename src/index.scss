@@ -30,7 +30,7 @@ body {
   color: $contrastingColor;
 }
 
-code {
+.code {
   font-family: $codeFontFamily;
   font-weight: $codeFontWeight;
   font-size: $codeFontSize;
@@ -109,4 +109,28 @@ code {
   position: relative;
   height: 100%;
   background-color: $accentColor;
+  line-height: 20px;
 }
+
+textarea::-webkit-scrollbar {
+  width: 12px;
+  background-color: $bgColor;
+}
+
+textarea::-webkit-scrollbar-track {
+  -webkit-box-shadow: $shadow; 
+  box-shadow: $shadow;
+  background-color: $bgColor;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  border-radius: $corners;
+  -webkit-box-shadow: $shadow; 
+  box-shadow: $shadow;
+  background-color: $contrastingColor;
+}
+
+.tab{
+  margin-right: 30px;
+}
+

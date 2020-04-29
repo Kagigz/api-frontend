@@ -2,14 +2,11 @@ import React from 'react';
 import './Results.scss';
 import { Link } from 'react-router-dom';
 
-import JSONInput from './components/results/input/jsonInput'
-import TextInput from './components/results/input/textInput'
 import ImageInput from './components/results/input/imageInput'
 import FileInput from './components/results/input/fileInput'
-import JSONOutput from './components/results/output/jsonOutput'
-import TextOutput from './components/results/output/textOutput'
 import ImageOutput from './components/results/output/imageOutput'
 import FileOutput from './components/results/output/fileOutput'
+import TextPanel from './components/results/textPanel'
 
 class Results extends React.Component{
 
@@ -18,17 +15,71 @@ class Results extends React.Component{
         super(props);
       }
 
+
+    getTypeName = (type) => {
+        switch(type){
+            case "text":
+                return "Text"
+            case "json":
+                return "JSON"
+            case "image":
+                return "Image"
+            case "file":
+                return "File"
+            default:
+                return "Undefined"
+        }
+    }
+
     render(){
 
-        var executionTimeStr = "", contentOutput = "", contentInput = "", mode = "";
+        var inputType = "", outputType = "";
+        var executionTimeStr = "", contentOutput = "", contentInputImg = "", contentInputText = "", mode = "";
         try{
             contentOutput = this.props.location.state.result;
-            contentInput = this.props.location.state.imgUrl;
+            contentInputImg = this.props.location.state.imgUrl;
+            contentInputText = this.props.location.state.input;
             mode = this.props.location.state.mode;
             var executionTime = this.props.location.state.executionTime;
+
+            inputType = this.props.location.state.inputType;
+            outputType = this.props.location.state.outputType;
             
             if(executionTime)
                 executionTimeStr = `Executed in ${executionTime/1000} s`;
+
+            var input = ""
+            switch(inputType){
+                case "text":
+                    input = <TextPanel content={contentInputText} type="input" format="text"/>
+                    break;
+                case "json":
+                    input = <TextPanel content={contentInputText} type="input" format="json"/>
+                    break;
+                case "image":
+                    input = <ImageInput mode={mode} content={contentInputImg}/>
+                    break;
+                case "file":
+                    input = <FileInput mode={mode} content={contentInputImg}/>
+                    break;
+            }
+
+            var output = ""
+            switch(outputType){
+                case "text":
+                    output = <TextPanel content={contentOutput} type="output" format="text"/>
+                    break;
+                case "json":
+                    output = <TextPanel content={contentOutput} type="output" format="json"/>
+                    break;
+                case "image":
+                    output = <ImageInput mode={mode} content={contentOutput}/>
+                    break;
+                case "file":
+                    output = <FileInput mode={mode} content={contentOutput}/>
+                    break;
+            }
+
         }
         catch(error){
             console.error("Cannot read props.");
@@ -42,13 +93,15 @@ class Results extends React.Component{
 
                         <div className="col-lg-6">
                             <div id="results-output" className="results-panel">
-                            <ImageOutput  mode={mode} content={contentOutput}/>
+                                <div className="title">{this.getTypeName(outputType)} Output</div>
+                                {output}
                             </div>
                         </div>
 
                         <div className="col-lg-6 order-lg-first">
                             <div id="results-input" className="results-panel">
-                            <ImageInput mode={mode} content={contentInput}/>
+                                <div className="title">{this.getTypeName(inputType)} Input</div>
+                                {input}
                             </div>
                         </div>
                     </div>

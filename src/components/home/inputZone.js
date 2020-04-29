@@ -109,7 +109,7 @@ class InputZone extends React.Component{
             </div>
         
             <div id='go'>
-                <Action urlRef={this.urlInputRef} textRef={this.textInputRef} fileRef={this.fileInputRef} uploadFiles={this.uploadFiles} files={this.state.files}/>
+                <Action inputType={this.props.inputType} urlRef={this.urlInputRef} textRef={this.textInputRef} fileRef={this.fileInputRef} uploadFiles={this.uploadFiles} files={this.state.files}/>
             </div>
           </div>
         )

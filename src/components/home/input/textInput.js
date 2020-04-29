@@ -10,12 +10,15 @@ class TextInput extends React.Component{
     render(){
 
         var placeholder = ""
+        var styling = ""
+
         switch(this.props.inputType){
             case "text":
                 placeholder = "Enter Text";
                 break;
             case "json":
                 placeholder = "Enter JSON";
+                styling = "code";
                 break;
             default:
                 break;
@@ -23,7 +26,7 @@ class TextInput extends React.Component{
 
         return(
         <div className="textBlockWrapper">
-            <input type="text" className="textBlockInput form-control" ref={this.props.refId} placeholder={placeholder} aria-label="text"/>
+            <textarea type="text" rows='12' className={`textBlockInput form-control ${styling}`} ref={this.props.refId} placeholder={placeholder} aria-label="text"/>
         </div>
         )
     }

@@ -59,3 +59,95 @@
     position: absolute;
     bottom:0.5px;
 }
+
+.textBlockResult{
+    width: 80%;
+    height: 60vh;
+    text-align: left;
+    padding: 20px;
+    border-radius: $corners;
+    box-shadow: $shadow;
+    margin-left: 50%;
+    transform: translate(-50%,0);
+    overflow-y: scroll;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+#textBlockResultInput::-webkit-scrollbar {
+    width: 12px;
+    background-color: $bgColor;
+    border-radius: $corners;
+}
+
+#textBlockResultInput::-webkit-scrollbar-track {
+    background-color: $accentColor;
+    border-radius: $corners;
+}
+
+#textBlockResultInput::-webkit-scrollbar-thumb {
+    border-radius: $corners;
+    background-color: $contrastingColor;
+}
+
+#textBlockResultOutput::-webkit-scrollbar {
+    width: 12px;
+    background-color: $bgColor;
+    border-radius: $corners;
+}
+
+#textBlockResultOutput::-webkit-scrollbar-track {
+    background-color: $bgColor;
+    border-radius: $corners;
+}
+
+#textBlockResultOutput::-webkit-scrollbar-thumb {
+    border-radius: $corners;
+    background-color: $contrastingColor;
+}
+
+#textBlockResultOutput::-webkit-scrollbar-corner {
+    display: hidden;
+}
+
+
+.resultInput{
+    background-color:$accentColor;
+    color: $accentTextColor;
+}
+
+.resultOutput{
+    background-color:$bgColor;
+    color: $textColor;
+}
+
+.jsonElementOuter{
+    margin-bottom: 15px;
+}
+
+.jsonElementInner{
+
+    border-radius: $corners*2;
+    //border: $btnBorders;
+    padding: 5px 0px;
+
+    .jsonKey{
+        background-color: $contrastingColor;
+        border-radius: $corners;
+        padding: 5px;
+    }
+    
+    .jsonValue{
+        padding: 5px 10px 5px 5px;
+    }
+}
+
+.normal{
+    background-color:$bgColor;
+    color: $textColor;
+}
+
+.accent{
+    background-color:$accentColor;
+    color: $accentTextColor;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import JSONObject from '../jsonObject';
 
 class TextOutput extends React.Component{
 
@@ -7,11 +8,28 @@ class TextOutput extends React.Component{
         super(props);
       }
 
-    render(){
+      render(){
+
+        let title = "Text Output";
+        let content = "";
+        let styling = ""
+        try {
+            if (this.props.type === "json"){
+                title = "JSON Output";
+                styling = "code";
+            }
+            content = <JSONObject obj={this.props.content}/>
+        }
+        catch(error){
+            console.error("Cannot read props.");
+        }
 
         return(
         <div>
-            Text Output
+            <div className="title">{title}</div>
+            <div id="textBlockResultOutput" className={`textBlockResult resultOutput ${styling}`}>
+                 {content}
+            </div>
         </div>
         )
     }

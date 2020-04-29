@@ -10,32 +10,86 @@ class LoadingScreen extends React.Component{
         this.state = {
             result: '',
             go: false,
-            executionTime: 0
+            executionTime: 0,
+            outputType: ""
         }
       }
 
 
 
-    callAPI = async (str, start) => {
-        let apiUrl = process.env.REACT_APP_API_URL;
-            fetch(apiUrl,
+    callApiImageResult = async (apiURL, data, contentType, start) => {
+            fetch(apiURL,
                 {
                     method: 'POST',
                     headers: {
-                        'Content-Type':'image/jpeg'
+                        'Content-Type': contentType
                     },
-                    body:str
+                    body: data
                 })
             .then(response => response.blob())
             .then(blob => URL.createObjectURL(blob))
             .then(url => this.setState({result: url, go:true, executionTime: new Date() - start}))
+            .catch(error => console.log(error))
 
     }
 
+    callApiJsonResult = async (apiURL, data, contentType, start) => {
+
+            console.log("Call API JSON");
+            fetch(apiURL,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': contentType
+                    },
+                    body: data
+                })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                this.setState({result: result, go:true, executionTime: new Date() - start})
+            })
+            .catch(error => console.log(error))
+    }
+
     componentDidMount = () => {
+        let apiURL = process.env.REACT_APP_API_URL;
+        let outputType = process.env.REACT_APP_OUTPUT_TYPE;
+        if (outputType !== "image" && outputType !== "json" && outputType !== "text" && outputType !== "file")
+            outputType = "text"
+        this.setState({outputType})
+
         const start = new Date()
+        let data;
+        let contentType;
+        switch(this.props.location.state.inputType){
+            case("text"):
+                data = this.props.location.state.content;
+                contentType = "text/html";
+                break;
+            case("json"):
+                data = this.props.location.state.content;
+                contentType = "application/json";
+                break;
+            case("image"):
+                data = this.props.location.state.imgData;
+                contentType = "image/jpeg";
+                break;
+            case("file"):
+                data = this.props.location.state.imgData;
+                contentType = "application/octet-stream";
+                break;
+        }
+
         try{
-        this.callAPI(this.props.location.state.imgData, start);
+            switch(outputType){
+                case("json"):
+                    this.callApiJsonResult(apiURL, data, contentType, start);
+                    break;
+                case("image"):
+                    this.callApiImageResult(apiURL, data, contentType, start);
+                    break;
+            }         
         }
         catch(error){
             console.error("Cannot call API.");
@@ -76,7 +130,9 @@ class LoadingScreen extends React.Component{
                         <Redirect to={{
                             pathname: 'results',
                             state: {
-                                mode: this.props.location.state.mode,
+                                inputType: this.props.location.state.inputType,
+                                outputType: this.state.outputType,
+                                input: this.props.location.state.content,
                                 imgUrl: this.props.location.state.imgUrl,
                                 result: this.state.result,
                                 executionTime: this.state.executionTime

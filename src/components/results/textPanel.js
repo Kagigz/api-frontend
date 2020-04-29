@@ -1,7 +1,7 @@
 import React from 'react';
-import JSONObject from '../jsonObject';
+import JSONObject from './jsonObject';
 
-class TextInput extends React.Component{
+class TextPanel extends React.Component{
 
     
     constructor(props) {    
@@ -10,24 +10,21 @@ class TextInput extends React.Component{
 
     render(){
 
-        let title = "Text Input";
         let content = "";
         let styling = ""
-        try {
-            if (this.props.type === "json"){
-                title = "JSON Input";
+        //try {
+            if (this.props.format === "json"){
                 styling = "code";
                 let obj = JSON.parse(this.props.content);
-                content = <JSONObject obj={obj}/>
+                content = <JSONObject type={this.props.type} obj={obj}/>
             }
-        }
-        catch(error){
-            console.error("Cannot read props.");
-        }
+        // }
+        // catch(error){
+        //     console.error("Cannot read props.");
+        // }
 
         return(
         <div>
-            <div className="title">{title}</div>
             <div id="textBlockResultInput" className={`textBlockResult resultInput ${styling}`}>
                  {content}
             </div>
@@ -37,4 +34,4 @@ class TextInput extends React.Component{
 
 }
 
-export default TextInput;
+export default TextPanel;
