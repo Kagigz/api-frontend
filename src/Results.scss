@@ -90,6 +90,12 @@
     background-color: $contrastingColor;
 }
 
+#textBlockResultInput::-webkit-scrollbar-corner {
+    background-color: $accentColor;
+    border-radius: $corners;
+}
+
+
 #textBlockResultOutput::-webkit-scrollbar {
     width: 12px;
     background-color: $bgColor;
@@ -107,7 +113,8 @@
 }
 
 #textBlockResultOutput::-webkit-scrollbar-corner {
-    display: hidden;
+    background-color: $bgColor;
+    border-radius: $corners;
 }
 
 

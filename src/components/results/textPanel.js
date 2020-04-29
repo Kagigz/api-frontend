@@ -17,6 +17,9 @@ class TextPanel extends React.Component{
                 }
                 content = <JSONObject type={this.props.type} obj={obj}/>
             }
+            else{
+                content = this.props.content;
+            }
 
             if (this.props.type === "input"){
                 id = "textBlockResultInput";

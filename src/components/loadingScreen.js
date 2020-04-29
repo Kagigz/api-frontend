@@ -16,6 +16,23 @@ class LoadingScreen extends React.Component{
       }
 
 
+    callApiTextResult = async (apiURL, data, contentType, start) => {
+        fetch(apiURL,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': contentType
+                },
+                body: data
+            })
+        .then(response => response.text())
+        .then(result => {
+            console.log(result);
+            this.setState({result: result, go:true, executionTime: new Date() - start})
+        })
+        .catch(error => console.log(error))
+
+    }
 
     callApiImageResult = async (apiURL, data, contentType, start) => {
             fetch(apiURL,
@@ -85,6 +102,9 @@ class LoadingScreen extends React.Component{
 
         try{
             switch(outputType){
+                case("text"):
+                    this.callApiTextResult(apiURL, data, contentType, start);
+                    break;
                 case("json"):
                     this.callApiJsonResult(apiURL, data, contentType, start);
                     break;
@@ -110,8 +130,6 @@ class LoadingScreen extends React.Component{
       }
 
     render(){
-
-        //console.log(`ImgData: ${this.propo}`)
 
         return(
             <div id="loadingScreen">

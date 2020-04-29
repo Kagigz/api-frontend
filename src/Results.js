@@ -31,7 +31,6 @@ class Results extends React.Component{
             contentOutput = this.props.location.state.result;
             contentInputImg = this.props.location.state.imgUrl;
             contentInputText = this.props.location.state.input;
-            mode = this.props.location.state.mode;
             var executionTime = this.props.location.state.executionTime;
 
             inputType = this.props.location.state.inputType;
@@ -52,7 +51,7 @@ class Results extends React.Component{
                     input = <ImagePanel content={contentInputImg}/>
                     break;
                 case "file":
-                    input = <FilePanel mode={mode} content={contentInputImg}/>
+                    input = <FilePanel content={contentInputImg}/>
                     break;
                 default:
                     break;
@@ -70,7 +69,7 @@ class Results extends React.Component{
                     output = <ImagePanel content={contentOutput}/>
                     break;
                 case "file":
-                    output = <FilePanel mode={mode} content={contentOutput}/>
+                    output = <FilePanel content={contentOutput}/>
                     break;
                 default:
                     break;
