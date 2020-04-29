@@ -67,7 +67,6 @@ class Dropzone extends React.Component{
                 onDragOver={this.onDragOver}
                 onDragLeave={this.onDragLeave}
                 onDrop={this.onDrop}
-                onClick={this.openFileDialog}
                 style={{ cursor: this.props.disabled ? "default" : "pointer" }}
             >
                 <img

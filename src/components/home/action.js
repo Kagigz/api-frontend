@@ -17,7 +17,7 @@ class Action extends React.Component{
 
     validUrl = () => {
         try{
-        if(this.props.urlRef.current.value != '')
+        if(this.props.urlRef.current.value !== '')
             return true;
         }
         catch(e){
@@ -28,7 +28,7 @@ class Action extends React.Component{
 
     validText = () => {
         try{
-            if(this.props.textRef.current.value != '')
+            if(this.props.textRef.current.value !== '')
                 return true;
         }
         catch(e){
@@ -74,7 +74,7 @@ class Action extends React.Component{
             this.setState({go: true, mode: 'url', imgUrl: imgUrl, imgData: reader.result});
         }
         
-        let imgData = reader.readAsArrayBuffer(blob);
+        reader.readAsArrayBuffer(blob);
     }
 
     sendImageFileRequest = () => {
@@ -86,7 +86,8 @@ class Action extends React.Component{
         reader.onload = () => {
             this.setState({go: true, mode: 'file', imgUrl: url, imgData: reader.result})
         }
-        let file_str = reader.readAsArrayBuffer(file);
+
+        reader.readAsArrayBuffer(file);
     }
 
     sendFileURLRequest = async () => {
@@ -104,7 +105,7 @@ class Action extends React.Component{
             this.setState({go: true, mode: 'url', imgUrl: imgUrl, imgData: reader.result});
         }
         
-        let imgData = reader.readAsArrayBuffer(blob);
+        reader.readAsArrayBuffer(blob);
     }
 
     sendFileRequest = async () => {
@@ -116,7 +117,8 @@ class Action extends React.Component{
         reader.onload = () => {
             this.setState({go: true, mode: 'file', imgUrl: url, imgData: reader.result})
         }
-        let file_str = reader.readAsArrayBuffer(file);
+
+        reader.readAsArrayBuffer(file);
     }
 
     sendRequest = async () => {
@@ -160,7 +162,9 @@ class Action extends React.Component{
                 else{
                     console.log("No file was provided.")
                 }
-                break;                
+                break;   
+            default:
+                break;             
         }
     
     }

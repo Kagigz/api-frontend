@@ -4,11 +4,6 @@ import JSONArray from './jsonArray';
 
 class JSONObject extends React.Component{
 
-    
-    constructor(props) {    
-        super(props);
-    }
-
     isArray = (a) => {
         return (!!a) && (a.constructor === Array);
     }

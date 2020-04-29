@@ -63,9 +63,6 @@ class InputZone extends React.Component{
     renderUI = (inputType) => {
 
       if (inputType === "text" || inputType === "json"){
-        var format = "Text";
-        if(inputType === "json")
-          format = "JSON";
         return (
             <div className='row'>
               <div className='col-md-10 offset-md-1'><TextInput refId={this.textInputRef} inputType={this.props.inputType}/></div>

@@ -3,10 +3,6 @@ import ReactMarkdown from 'react-markdown';
 
 class Description extends React.Component{
 
-    
-    constructor(props) {    
-        super(props);
-      }
 
     render(){
 

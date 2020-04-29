@@ -2,19 +2,11 @@ import React from 'react';
 import './Results.scss';
 import { Link } from 'react-router-dom';
 
-import ImageInput from './components/results/input/imageInput'
-import FileInput from './components/results/input/fileInput'
-import ImageOutput from './components/results/output/imageOutput'
-import FileOutput from './components/results/output/fileOutput'
+import ImagePanel from './components/results/imagePanel'
+import FilePanel from './components/results/filePanel'
 import TextPanel from './components/results/textPanel'
 
 class Results extends React.Component{
-
-    
-    constructor(props) {    
-        super(props);
-      }
-
 
     getTypeName = (type) => {
         switch(type){
@@ -57,10 +49,12 @@ class Results extends React.Component{
                     input = <TextPanel content={contentInputText} type="input" format="json"/>
                     break;
                 case "image":
-                    input = <ImageInput mode={mode} content={contentInputImg}/>
+                    input = <ImagePanel content={contentInputImg}/>
                     break;
                 case "file":
-                    input = <FileInput mode={mode} content={contentInputImg}/>
+                    input = <FilePanel mode={mode} content={contentInputImg}/>
+                    break;
+                default:
                     break;
             }
 
@@ -73,10 +67,12 @@ class Results extends React.Component{
                     output = <TextPanel content={contentOutput} type="output" format="json"/>
                     break;
                 case "image":
-                    output = <ImageInput mode={mode} content={contentOutput}/>
+                    output = <ImagePanel content={contentOutput}/>
                     break;
                 case "file":
-                    output = <FileInput mode={mode} content={contentOutput}/>
+                    output = <FilePanel mode={mode} content={contentOutput}/>
+                    break;
+                default:
                     break;
             }
 

@@ -3,10 +3,6 @@ import JSONObject from './jsonObject';
 
 class TextPanel extends React.Component{
 
-    
-    constructor(props) {    
-        super(props);
-      }
 
     render(){
 

@@ -2,7 +2,6 @@ import React from 'react';
 
 import Dropzone from './dropzone'
 import FileZone from './filezone'
-import Progress from './progress'
 
 class FileUpload extends React.Component{
 
@@ -16,27 +15,6 @@ class FileUpload extends React.Component{
           };
 
       }
-
-      renderProgress = (file) => {
-        const uploadProgress = this.state.uploadProgress[file.name];
-        if (this.state.uploading || this.state.successfullUploaded) {
-          return (
-            <div className="progressWrapper">
-              <Progress progress={uploadProgress ? uploadProgress.percentage : 0} />
-              <img
-                className="checkIcon"
-                alt="done"
-                src="check-icon.svg"
-                style={{
-                  opacity:
-                    uploadProgress && uploadProgress.state === "done" ? 0.5 : 0
-                }}
-              />
-            </div>
-          );
-        }
-      }
-
 
       renderActions = () => {
         if (this.state.successfullUploaded) {

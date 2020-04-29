@@ -2,15 +2,10 @@ import React from 'react';
 
 class JSONElement extends React.Component{
 
-    
-    constructor(props) {    
-        super(props);
-      }
-
     render(){
 
         let styling = "accent";
-        if(this.props.type == "input")
+        if(this.props.type === "input")
             styling = "normal";
 
         let tabs = [];

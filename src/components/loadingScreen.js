@@ -79,6 +79,8 @@ class LoadingScreen extends React.Component{
                 data = this.props.location.state.imgData;
                 contentType = "application/octet-stream";
                 break;
+            default:
+                break;
         }
 
         try{
@@ -88,6 +90,8 @@ class LoadingScreen extends React.Component{
                     break;
                 case("image"):
                     this.callApiImageResult(apiURL, data, contentType, start);
+                    break;
+                default:
                     break;
             }         
         }
