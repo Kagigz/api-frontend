@@ -11,7 +11,6 @@ class TextPanel extends React.Component{
         try {
             if (this.props.format === "json"){
                 styling1 = "code";
-                console.log(this.props.content);
                 let obj = this.props.content;
                 if (this.props.type === "input"){
                     obj = JSON.parse(obj);
