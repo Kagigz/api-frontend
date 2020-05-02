@@ -50,6 +50,22 @@ class LoadingScreen extends React.Component{
 
     }
 
+    callApiFileResult = async (apiURL, data, contentType, start) => {
+        fetch(apiURL,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': contentType
+                },
+                body: data
+            })
+        .then(response => response.blob())
+        .then(blob => URL.createObjectURL(blob))
+        .then(url => this.setState({result: url, go:true, executionTime: new Date() - start}))
+        .catch(error => console.log(error))
+
+}
+
     callApiJsonResult = async (apiURL, data, contentType, start) => {
 
             console.log("Call API JSON");
@@ -89,11 +105,11 @@ class LoadingScreen extends React.Component{
                 contentType = "application/json";
                 break;
             case("image"):
-                data = this.props.location.state.imgData;
+                data = this.props.location.state.data;
                 contentType = "image/jpeg";
                 break;
             case("file"):
-                data = this.props.location.state.imgData;
+                data = this.props.location.state.data;
                 contentType = "application/octet-stream";
                 break;
             default:
@@ -110,6 +126,9 @@ class LoadingScreen extends React.Component{
                     break;
                 case("image"):
                     this.callApiImageResult(apiURL, data, contentType, start);
+                    break;
+                case("file"):
+                    this.callApiFileResult(apiURL, data, contentType, start);
                     break;
                 default:
                     break;
@@ -157,7 +176,8 @@ class LoadingScreen extends React.Component{
                                 input: this.props.location.state.content,
                                 imgUrl: this.props.location.state.imgUrl,
                                 result: this.state.result,
-                                executionTime: this.state.executionTime
+                                executionTime: this.state.executionTime,
+                                fileName: this.props.location.state.fileName
                             }
                         }} /> 
                     : ''}

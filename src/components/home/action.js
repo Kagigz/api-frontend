@@ -10,7 +10,7 @@ class Action extends React.Component{
             go: false,
             mode: 'url',
             content: '',
-            imgData: ''
+            data: ''
         }
     }
 
@@ -50,16 +50,25 @@ class Action extends React.Component{
     }
 
     sendTextRequest = () => {
+
+        console.log("Send Text Request");
+
         let text = this.props.textRef.current.value;
         this.setState({go: true, mode: 'text', content: text});
     }
 
     sendJSONRequest = () => {
+
+        console.log("Send JSON Request");
+
         let json = this.props.textRef.current.value;
         this.setState({go: true, mode: 'text', content: json});
     }
 
     sendImageURLRequest = async () => {
+
+        console.log("Send Image URL Request");
+
         let imgUrl = this.props.urlRef.current.value;
         console.log(`Image URL: ${imgUrl}`);
         let response = await fetch(imgUrl);
@@ -71,26 +80,32 @@ class Action extends React.Component{
         let reader = new FileReader();
         
         reader.onload = () => {
-            this.setState({go: true, mode: 'url', imgUrl: imgUrl, imgData: reader.result});
+            this.setState({go: true, mode: 'url', imgUrl: imgUrl, data: reader.result});
         }
         
         reader.readAsArrayBuffer(blob);
     }
 
     sendImageFileRequest = () => {
-        let url = this.props.uploadFiles()[0];
+
+        console.log("Send Image File Request");
+
+        let url = this.props.uploadFiles();
         
         let file = this.props.files[0];
 
         let reader = new FileReader();
         reader.onload = () => {
-            this.setState({go: true, mode: 'file', imgUrl: url, imgData: reader.result})
+            this.setState({go: true, mode: 'file', imgUrl: url, data: reader.result})
         }
 
         reader.readAsArrayBuffer(file);
     }
 
     sendFileURLRequest = async () => {
+
+        console.log("Send File URL Request");
+
         let imgUrl = this.props.urlRef.current.value;
         console.log(`Image URL: ${imgUrl}`);
         let response = await fetch(imgUrl);
@@ -102,27 +117,28 @@ class Action extends React.Component{
         let reader = new FileReader();
         
         reader.onload = () => {
-            this.setState({go: true, mode: 'url', imgUrl: imgUrl, imgData: reader.result});
+            this.setState({go: true, data: reader.result});
         }
         
         reader.readAsArrayBuffer(blob);
     }
 
-    sendFileRequest = async () => {
-        let url = this.props.uploadFiles()[0];
-        
-        let file = this.props.files[0];
+    sendFileRequest = async () => {   
 
+        console.log("Send File Request");
+
+        let url = this.props.uploadFiles();
+
+        let file = this.props.files[0];
         let reader = new FileReader();
         reader.onload = () => {
-            this.setState({go: true, mode: 'file', imgUrl: url, imgData: reader.result})
+            this.setState({go: true, imgUrl: url, data: reader.result, fileName: file.name})
         }
 
         reader.readAsArrayBuffer(file);
     }
 
     sendRequest = async () => {
-        console.log("Send Request");
 
         switch(this.props.inputType){
             case("text"):
@@ -184,9 +200,10 @@ class Action extends React.Component{
                         state: {
                             mode: this.state.mode,
                             imgUrl: this.state.imgUrl,
-                            imgData: this.state.imgData,
+                            data: this.state.data,
                             inputType: this.props.inputType,
-                            content: this.state.content
+                            content: this.state.content,
+                            fileName: this.state.fileName
                         }
                     }} /> 
                 : ''}

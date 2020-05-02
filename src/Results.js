@@ -26,7 +26,8 @@ class Results extends React.Component{
     render(){
 
         var inputType = "", outputType = "";
-        var executionTimeStr = "", contentOutput = "", contentInputImg = "", contentInputText = "", mode = "";
+        var executionTimeStr = "", contentOutput = "", contentInputImg = "", contentInputText = "", inputExtension = "", inputFileName = "";
+
         try{
             contentOutput = this.props.location.state.result;
             contentInputImg = this.props.location.state.imgUrl;
@@ -36,6 +37,9 @@ class Results extends React.Component{
             inputType = this.props.location.state.inputType;
             outputType = this.props.location.state.outputType;
             
+            inputFileName = this.props.location.state.fileName;
+            inputExtension = this.props.location.state.fileName.split('.').pop();
+
             if(executionTime)
                 executionTimeStr = `Executed in ${executionTime/1000} s`;
 
@@ -51,10 +55,10 @@ class Results extends React.Component{
                     input = <ImagePanel content={contentInputImg}/>
                     break;
                 case "file":
-                    input = <FilePanel content={contentInputImg}/>
+                    input = <FilePanel content={contentInputImg} fileName={inputFileName} extension={inputExtension}/>
                     break;
                 default:
-                    break;
+                    break; 
             }
 
             var output = ""
@@ -69,7 +73,7 @@ class Results extends React.Component{
                     output = <ImagePanel content={contentOutput}/>
                     break;
                 case "file":
-                    output = <FilePanel content={contentOutput}/>
+                    output = <FilePanel content={contentOutput} fileName="" extension="generic"/>
                     break;
                 default:
                     break;

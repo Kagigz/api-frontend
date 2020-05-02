@@ -30,7 +30,6 @@ class InputZone extends React.Component{
           files: prevState.files.concat(files),
           fileName:files[0].name, fileUploaded: true
         }));
-        //this.setState({fileName:files[0].name, fileUploaded: true})
       }
 
       clearFiles = () => {
@@ -38,26 +37,9 @@ class InputZone extends React.Component{
       }
 
       uploadFiles = () => {
-        //this.setState({ uploadProgress: {}, uploading: true });
-        //const promises = [];
-        let urls = []
-        this.state.files.forEach(file => {
-          //promises.push(this.sendUploadRequest(file));
-          //this.sendUploadRequest(file);
-          urls.push(URL.createObjectURL(file))
-          console.log(urls);
-          
-        });
-
-        return urls
-        // try {
-        //   await Promise.all(promises);
-      
-        //   this.setState({ successfullUploaded: true, uploading: false });
-        // } catch (e) {
-        //   // Not Production ready! Do some error handling here instead...
-        //   this.setState({ successfullUploaded: true, uploading: false });
-        // }
+        let url = URL.createObjectURL(this.state.files[0]);
+        console.log(url);
+        return url;
       }
 
     renderUI = (inputType) => {
