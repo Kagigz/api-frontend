@@ -16,13 +16,11 @@ class LoadingScreen extends React.Component{
       }
 
 
-    callApiTextResult = async (apiURL, data, contentType, start) => {
+    callApiTextResult = async (apiURL, headers, data, start) => {
         fetch(apiURL,
             {
                 method: 'POST',
-                headers: {
-                    'Content-Type': contentType
-                },
+                headers: headers,
                 body: data
             })
         .then(response => response.text())
@@ -30,13 +28,11 @@ class LoadingScreen extends React.Component{
         .catch(error => console.log(`Error in callApiTextResult: ${error}`))
     }
 
-    callApiJsonResult = async (apiURL, data, contentType, start) => {
+    callApiJsonResult = async (apiURL, headers, data, start) => {
         fetch(apiURL,
             {
                 method: 'POST',
-                headers: {
-                    'Content-Type': contentType
-                },
+                headers: headers,
                 body: data
             })
         .then(response => response.json())
@@ -45,13 +41,11 @@ class LoadingScreen extends React.Component{
     }
 
 
-    callApiFileResult = async (apiURL, data, contentType, start) => {
+    callApiFileResult = async (apiURL, headers, data, start) => {
         fetch(apiURL,
             {
                 method: 'POST',
-                headers: {
-                    'Content-Type': contentType
-                },
+                headers: headers,
                 body: data
             })
         .then(response => response.blob())
@@ -65,6 +59,10 @@ class LoadingScreen extends React.Component{
         // Getting API URL from environment variable
         let apiURL = process.env.REACT_APP_API_URL;
         console.log(`Sending request to ${apiURL}`);
+
+        // Getting API key header name and value in case it's needed
+        let apiKeyHeaderName = process.env.REACT_APP_API_KEY_HEADER_NAME;
+        let apiKeyValue = process.env.REACT_APP_API_KEY_VALUE;
 
         // Getting output type from environment variable
         let outputType = process.env.REACT_APP_OUTPUT_TYPE;
@@ -104,18 +102,23 @@ class LoadingScreen extends React.Component{
 
         // Calling a different method depending on output type
         try{
+            let headers = new Headers()
+            headers.append('Content-Type', contentType)
+            if(apiKeyHeaderName !== ""){
+                headers.append(apiKeyHeaderName, apiKeyValue)
+            }
             switch(outputType){
                 case("text"):
-                    this.callApiTextResult(apiURL, data, contentType, start);
+                    this.callApiTextResult(apiURL, headers, data, start);
                     break;
                 case("json"):
-                    this.callApiJsonResult(apiURL, data, contentType, start);
+                    this.callApiJsonResult(apiURL, headers, data, start);
                     break;
                 case("image"):
-                    this.callApiFileResult(apiURL, data, contentType, start);
+                    this.callApiFileResult(apiURL, headers, data, start);
                     break;
                 case("file"):
-                    this.callApiFileResult(apiURL, data, contentType, start);
+                    this.callApiFileResult(apiURL, headers, data, start);
                     break;
                 default:
                     break;

@@ -37,7 +37,7 @@ class Results extends React.Component{
             outputType = this.props.location.state.outputType;
             
             inputFileName = this.props.location.state.fileName;
-            inputExtension = this.props.location.state.fileName.split('.').pop();
+            inputExtension = this.props.location.state.fileName?.split('.').pop();
 
             contentOutput = this.props.location.state.result;
             contentInputImg = this.props.location.state.inputUrl;
