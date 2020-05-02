@@ -11,6 +11,8 @@ It can accept several input and output types, and is very easily configurable. S
 
 There's a light and a dark theme available, and you can easily create your own theme: just add a new theme file with the colors of your choosing.
 
+You can also edit the default description (Markdown is supported) in the *src/components/homePage/description.js* file.
+
 ## How to use
 
 - Download or clone this repository
