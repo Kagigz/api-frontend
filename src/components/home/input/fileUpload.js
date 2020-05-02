@@ -20,8 +20,7 @@ class FileUpload extends React.Component{
                           fileUploaded={this.props.fileUploaded}
                       />
                         
-                    </div>
-                    
+                    </div>                  
                 </div>
             </div>
         )

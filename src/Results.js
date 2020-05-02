@@ -25,14 +25,13 @@ class Results extends React.Component{
 
     render(){
 
+        // Initializing variables
         var inputType = "", outputType = "";
-        var executionTimeStr = "", contentOutput = "", contentInputImg = "", contentInputText = "", inputExtension = "", inputFileName = "";
+        var input = "", output = "";
+        var contentOutput = "", contentInputImg = "", contentInputText = "", inputExtension = "", inputFileName = "";
+        var executionTimeStr = "";
 
         try{
-            contentOutput = this.props.location.state.result;
-            contentInputImg = this.props.location.state.imgUrl;
-            contentInputText = this.props.location.state.input;
-            var executionTime = this.props.location.state.executionTime;
 
             inputType = this.props.location.state.inputType;
             outputType = this.props.location.state.outputType;
@@ -40,10 +39,15 @@ class Results extends React.Component{
             inputFileName = this.props.location.state.fileName;
             inputExtension = this.props.location.state.fileName.split('.').pop();
 
+            contentOutput = this.props.location.state.result;
+            contentInputImg = this.props.location.state.imgUrl;
+            contentInputText = this.props.location.state.input;
+
+            var executionTime = this.props.location.state.executionTime;
             if(executionTime)
                 executionTimeStr = `Executed in ${executionTime/1000} s`;
 
-            var input = ""
+            // Showing different input panel based on input type
             switch(inputType){
                 case "text":
                     input = <TextPanel content={contentInputText} type="input" format="text"/>
@@ -61,7 +65,7 @@ class Results extends React.Component{
                     break; 
             }
 
-            var output = ""
+            // Showing different ougput panel based on poutut type
             switch(outputType){
                 case "text":
                     output = <TextPanel content={contentOutput} type="output" format="text"/>
@@ -81,22 +85,20 @@ class Results extends React.Component{
 
         }
         catch(error){
-            console.error("Cannot read props.");
+            console.error(`Error loading results page: ${error}`);
         }
     
 
         return(
-            <div className="App">
+            <div>
 
                     <div className="row no-gutters">
-
                         <div className="col-lg-6">
                             <div id="results-output" className="results-panel">
                                 <div className="title">{this.getTypeName(outputType)} Output</div>
                                 {output}
                             </div>
                         </div>
-
                         <div className="col-lg-6 order-lg-first">
                             <div id="results-input" className="results-panel">
                                 <div className="title">{this.getTypeName(inputType)} Input</div>
@@ -104,8 +106,7 @@ class Results extends React.Component{
                             </div>
                         </div>
                     </div>
-            
-            
+             
                 <div id="bottom">
                     <div id="btn-tryAgain" className="btn">
                         <Link to={{
