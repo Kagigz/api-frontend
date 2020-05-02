@@ -26,29 +26,24 @@ class LoadingScreen extends React.Component{
                 body: data
             })
         .then(response => response.text())
-        .then(result => {
-            console.log(result);
-            this.setState({result: result, go:true, executionTime: new Date() - start})
-        })
-        .catch(error => console.log(error))
-
+        .then(result => this.setState({result: result, go:true, executionTime: new Date() - start}))
+        .catch(error => console.log(`Error in callApiTextResult: ${error}`))
     }
 
-    callApiImageResult = async (apiURL, data, contentType, start) => {
-            fetch(apiURL,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': contentType
-                    },
-                    body: data
-                })
-            .then(response => response.blob())
-            .then(blob => URL.createObjectURL(blob))
-            .then(url => this.setState({result: url, go:true, executionTime: new Date() - start}))
-            .catch(error => console.log(error))
-
+    callApiJsonResult = async (apiURL, data, contentType, start) => {
+        fetch(apiURL,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': contentType
+                },
+                body: data
+            })
+        .then(response => response.json())
+        .then(result => this.setState({result: result, go:true, executionTime: new Date() - start}))
+        .catch(error => console.log(`Error in callApiJsonResult: ${error}`))
     }
+
 
     callApiFileResult = async (apiURL, data, contentType, start) => {
         fetch(apiURL,
@@ -62,40 +57,31 @@ class LoadingScreen extends React.Component{
         .then(response => response.blob())
         .then(blob => URL.createObjectURL(blob))
         .then(url => this.setState({result: url, go:true, executionTime: new Date() - start}))
-        .catch(error => console.log(error))
-
-}
-
-    callApiJsonResult = async (apiURL, data, contentType, start) => {
-
-            console.log("Call API JSON");
-            fetch(apiURL,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': contentType
-                    },
-                    body: data
-                })
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-                this.setState({result: result, go:true, executionTime: new Date() - start})
-            })
-            .catch(error => console.log(error))
+        .catch(error => console.log(`Error in callApiFileResult: ${error}`))
     }
 
     componentDidMount = () => {
-        let apiURL = process.env.REACT_APP_API_URL;
-        let outputType = process.env.REACT_APP_OUTPUT_TYPE;
-        if (outputType !== "image" && outputType !== "json" && outputType !== "text" && outputType !== "file")
-            outputType = "text"
-        this.setState({outputType})
 
+        // Getting API URL from environment variable
+        let apiURL = process.env.REACT_APP_API_URL;
+        console.log(`Sending request to ${apiURL}`);
+
+        // Getting output type from environment variable
+        let outputType = process.env.REACT_APP_OUTPUT_TYPE;
+        if (outputType !== "image" && outputType !== "json" && outputType !== "file" && outputType !== "audio" && outputType !== "video")
+            outputType = "text"
+        this.setState({outputType});
+        // Getting input type from props
+        let inputType = this.props.location.state.inputType;
+        console.log(`Input: ${inputType} / Output: ${outputType}`);
+
+        // Initializing time variable to calculate execution time later
         const start = new Date()
         let data;
         let contentType;
-        switch(this.props.location.state.inputType){
+
+        // Setting data and content type to send to the API depending on input type
+        switch(inputType){
             case("text"):
                 data = this.props.location.state.content;
                 contentType = "text/html";
@@ -116,6 +102,7 @@ class LoadingScreen extends React.Component{
                 break;
         }
 
+        // Calling a different method depending on output type
         try{
             switch(outputType){
                 case("text"):
@@ -125,7 +112,7 @@ class LoadingScreen extends React.Component{
                     this.callApiJsonResult(apiURL, data, contentType, start);
                     break;
                 case("image"):
-                    this.callApiImageResult(apiURL, data, contentType, start);
+                    this.callApiFileResult(apiURL, data, contentType, start);
                     break;
                 case("file"):
                     this.callApiFileResult(apiURL, data, contentType, start);
@@ -135,22 +122,14 @@ class LoadingScreen extends React.Component{
             }         
         }
         catch(error){
-            console.error("Cannot call API.");
+            console.error(`Cannot send request to API: ${error}`);
         }
-    }
 
-    str2ab = (str) => {
-        var buf = new ArrayBuffer(str.length * 2); // 2 bytes for each char
-        var bufView = new Uint16Array(buf);
-        for (var i = 0, strLen = str.length; i < strLen; i++) {
-          bufView[i] = str.charCodeAt(i);
-        }
-        return buf;
-      }
+    }
 
     render(){
 
-        return(
+        return(  
             <div id="loadingScreen">
                 
                 <div id="loadingContent">
@@ -165,7 +144,6 @@ class LoadingScreen extends React.Component{
                     </div>
                 </div>
 
-                    
                     {
                     this.state.go ?
                         <Redirect to={{
@@ -175,14 +153,13 @@ class LoadingScreen extends React.Component{
                                 outputType: this.state.outputType,
                                 input: this.props.location.state.content,
                                 imgUrl: this.props.location.state.imgUrl,
+                                fileName: this.props.location.state.fileName,
                                 result: this.state.result,
-                                executionTime: this.state.executionTime,
-                                fileName: this.props.location.state.fileName
+                                executionTime: this.state.executionTime
                             }
                         }} /> 
                     : ''}
 
-        
             </div>
         )
     }

@@ -78,7 +78,6 @@ class FilePanel extends React.Component{
                     <img className="fileTypeImgResult" alt={`${this.props.extension} file`} src={iconPath}/>
                 </a>
             }
-                
         </div>
         )
     }
