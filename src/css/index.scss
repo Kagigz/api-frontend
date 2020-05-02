@@ -1,5 +1,5 @@
 @import '~bootstrap/scss/bootstrap.scss';
-@import './themes/dark-theme.scss';
+@import './themes/light-theme.scss';
 
 body {
   margin: 0;
@@ -67,6 +67,8 @@ body {
 
 .form-control{
   border: $btnBorders;
+  border-radius: $corners;
+  background-color: $inputColor;
 }
 
 .form-control:focus{
@@ -76,7 +78,7 @@ body {
 
 .dropzone {
   height: 200px;
-  background-color: $accentColor;
+  background-color: $inputColor;
   border: $btnBorders;
   font-size: $btnFontSize;
   display: flex;
@@ -108,7 +110,7 @@ body {
 .textBlockInput{
   position: relative;
   height: 100%;
-  background-color: $accentColor;
+  background-color: $inputColor;
   line-height: 20px;
 }
 

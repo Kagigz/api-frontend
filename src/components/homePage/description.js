@@ -6,7 +6,7 @@ class Description extends React.Component{
 
     render(){
 
-        const description = "# Sentiment Analysis Demo\n This is a demo for a sentiment analysis API. For each given document, a score representing the overall sentiment of the text is returned."
+        const description = "# Image Transformation Demo\n This is a demo for an image transformation API. It returns the negative of the input image."
 
         return(
         <div>

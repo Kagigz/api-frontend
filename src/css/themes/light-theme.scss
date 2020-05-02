@@ -1,0 +1,38 @@
+/* COLORS */
+$bgColor: #f2f2f2;
+$textColor: #777777;
+$accentColor: #ffffff;
+$accentTextColor: #000000;
+$contrastingColor: #1e63b8;
+$inputColor: #ebebeb;
+$btnColor: #1e63b8;
+$btnTextColor: #ffffff;
+$btnColorHover: #4988d5;
+$btnTextColorHover: #ffffff;
+$highlightBlockColor: #1e63b8;
+$highlightBorderColor: #777777;
+$borderColor: #777777;
+$shadowColor: #777777;
+
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&family=Montserrat:wght@400;900&family=Roboto+Mono:wght@300&display=swap');
+$titleFontFamily: "Montserrat", "Helvetica Neue", "Segoe UI", "Calibri", sans-serif;
+$titleFontWeight: 900;
+$titleFontSize: 2em;
+$bodyFontFamily: "Baloo Bhai 2", "Helvetica Neue", "Segoe UI", "Calibri", sans-serif;
+$bodyFontWeight: 400;
+$bodyFontSize: 1em;
+$codeFontFamily: "Roboto", source-code-pro, Menlo, Monaco, Consolas, "Courier New";
+$codeFontWeight: 300;
+$codeFontSize: 0.8em;
+$btnFontFamily: $titleFontFamily;
+$btnFontWeight: $titleFontWeight;
+$btnFontSize: 1.5em;
+
+
+/* DESIGN */
+$shadow: 2px 2px 2px $shadowColor;
+$corners: 0px;
+$btnBorders: 2px solid $borderColor;
+$btnBordersHover: 2px solid $borderColor;
+$inputBoxShadow: 0px 0px 10px $highlightBorderColor;
