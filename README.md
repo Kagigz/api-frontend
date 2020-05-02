@@ -28,6 +28,6 @@ Set the input and output types to one of the following depending on your use-cas
 - image
 - json
 - text
-- file *available soon*
+- file
 - audio *available soon*
 - video *available soon*
