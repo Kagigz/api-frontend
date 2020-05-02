@@ -8,7 +8,6 @@ class Action extends React.Component{
         super(props);
         this.state = {
             go: false,
-            mode: 'url',
             content: '',
             data: ''
         }
@@ -17,8 +16,8 @@ class Action extends React.Component{
 
     validUrl = () => {
         try{
-        if(this.props.urlRef.current.value !== '')
-            return true;
+            if(this.props.urlRef.current.value !== '')
+                return true;
         }
         catch(e){
             console.error("URL input is not defined.")
@@ -38,7 +37,6 @@ class Action extends React.Component{
     }
 
     validFile = () => {
-
         try{
             if(this.props.files.length > 0)
                 return true;
@@ -49,160 +47,80 @@ class Action extends React.Component{
         return false;
     }
 
-    sendTextRequest = () => {
-
-        console.log("Send Text Request");
-
+    getTextData = () => {
         let text = this.props.textRef.current.value;
-        this.setState({go: true, mode: 'text', content: text});
+        console.log(`Getting text input: ${text}`);
+        this.setState({go: true, content: text});
     }
 
-    sendJSONRequest = () => {
+    getURLData = async () => {
 
-        console.log("Send JSON Request");
+        let inputUrl = this.props.urlRef.current.value;
+        console.log(`Getting input from URL: ${inputUrl}`);
 
-        let json = this.props.textRef.current.value;
-        this.setState({go: true, mode: 'text', content: json});
-    }
-
-    sendImageURLRequest = async () => {
-
-        console.log("Send Image URL Request");
-
-        let imgUrl = this.props.urlRef.current.value;
-        console.log(`Image URL: ${imgUrl}`);
-        let response = await fetch(imgUrl);
-        let blob = await response.blob();
-
-        console.log(response);
-        
+        let response = await fetch(inputUrl);
+        let blob = await response.blob();      
     
         let reader = new FileReader();
-        
         reader.onload = () => {
-            this.setState({go: true, mode: 'url', imgUrl: imgUrl, data: reader.result});
+            this.setState({go: true, inputUrl: inputUrl, fileName: inputUrl, data: reader.result});
         }
-        
         reader.readAsArrayBuffer(blob);
+
     }
 
-    sendImageFileRequest = () => {
-
-        console.log("Send Image File Request");
+    getFileData = () => {
 
         let url = this.props.uploadFiles();
-        
         let file = this.props.files[0];
+        console.log(`Getting input from file: ${file.name}`);
 
         let reader = new FileReader();
         reader.onload = () => {
-            this.setState({go: true, mode: 'file', imgUrl: url, data: reader.result})
+            this.setState({go: true, inputUrl: url, fileName: file.name, data: reader.result})
         }
-
         reader.readAsArrayBuffer(file);
+
     }
 
-    sendFileURLRequest = async () => {
+    getData = async () => {
 
-        console.log("Send File URL Request");
-
-        let imgUrl = this.props.urlRef.current.value;
-        console.log(`Image URL: ${imgUrl}`);
-        let response = await fetch(imgUrl);
-        let blob = await response.blob();
-
-        console.log(response);
-        
-    
-        let reader = new FileReader();
-        
-        reader.onload = () => {
-            this.setState({go: true, data: reader.result});
+        if(this.props.inputType === "text" || this.props.inputType === "json"){
+            if(this.validText()){
+                this.getTextData();
+            }
+            else{
+                console.error("No input was provided.");
+            }
         }
-        
-        reader.readAsArrayBuffer(blob);
-    }
-
-    sendFileRequest = async () => {   
-
-        console.log("Send File Request");
-
-        let url = this.props.uploadFiles();
-
-        let file = this.props.files[0];
-        let reader = new FileReader();
-        reader.onload = () => {
-            this.setState({go: true, imgUrl: url, data: reader.result, fileName: file.name})
+        else{
+            if(this.validUrl()){
+                this.getURLData();
+            }
+            else if(this.validFile()){
+                this.getFileData();
+            }
+            else{
+                console.log("No input was provided.")
+            }
         }
-
-        reader.readAsArrayBuffer(file);
-    }
-
-    sendRequest = async () => {
-
-        switch(this.props.inputType){
-            case("text"):
-                if(this.validText()){
-                    this.sendTextRequest();
-                }
-                else{
-                    console.error("No text was entered");
-                }
-                break;
-            case("json"):
-                if(this.validText()){
-                    this.sendJSONRequest();
-                }
-                else{
-                    console.error("No JSON was entered");
-                }
-                break;
-            case("image"):
-                if(this.validUrl()){
-                    this.sendImageURLRequest();
-                }
-                else if(this.validFile()){
-                    this.sendImageFileRequest();
-                }
-                else{
-                    console.log("No image was provided.")
-                }
-                break;
-            case("file"):
-                if(this.validUrl()){
-                    this.sendFileURLRequest();
-                }
-                else if(this.validFile()){
-                    this.sendFileRequest();
-                }
-                else{
-                    console.log("No file was provided.")
-                }
-                break;   
-            default:
-                break;             
-        }
-    
+            
     }
 
 
     render(){
-
-        console.log(this.state.content);
-
         return(
-            <div id="btn-go" className='btn' onClick={this.sendRequest}>
+            <div id="btn-go" className='btn' onClick={this.getData}>
                 GO!
                 {
                 this.state.go ?
                     <Redirect to={{
                         pathname: 'loading',
                         state: {
-                            mode: this.state.mode,
-                            imgUrl: this.state.imgUrl,
-                            data: this.state.data,
                             inputType: this.props.inputType,
+                            data: this.state.data,
                             content: this.state.content,
+                            inputUrl: this.state.inputUrl,
                             fileName: this.state.fileName
                         }
                     }} /> 
