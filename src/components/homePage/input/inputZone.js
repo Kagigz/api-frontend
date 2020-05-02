@@ -1,9 +1,9 @@
 import React from 'react';
 
-import URLInput from './input/urlInput'
-import TextInput from './input/textInput'
-import FileUpload from './input/fileUpload'
-import Action from './action'
+import URLInput from './urlInput'
+import TextInput from './textInput'
+import FileUpload from './fileUpload'
+import Action from '../action'
 
 class InputZone extends React.Component{
 

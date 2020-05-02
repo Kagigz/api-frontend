@@ -1,5 +1,5 @@
 import React from 'react';
-import JSONObject from './jsonObject';
+import JSONObject from './utils/jsonObject';
 
 class TextPanel extends React.Component{
 

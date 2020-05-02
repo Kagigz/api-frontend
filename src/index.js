@@ -5,14 +5,11 @@ import * as serviceWorker from './serviceWorker';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 
-import App from './App';
-import LoadingScreen from './components/loadingScreen'
-import Results from './Results'
+import App from './components/App';
+import LoadingScreen from './components/LoadingScreen'
+import Results from './components/Results'
 
-import './index.scss';
-
-
-
+import './css/index.scss';
 
 const routing = (
 <Router>

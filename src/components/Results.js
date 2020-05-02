@@ -1,10 +1,10 @@
 import React from 'react';
-import './Results.scss';
+import '../css/results.scss';
 import { Link } from 'react-router-dom';
 
-import ImagePanel from './components/results/imagePanel'
-import FilePanel from './components/results/filePanel'
-import TextPanel from './components/results/textPanel'
+import ImagePanel from './resultsPage/imagePanel'
+import FilePanel from './resultsPage/filePanel'
+import TextPanel from './resultsPage/textPanel'
 
 class Results extends React.Component{
 
@@ -40,7 +40,7 @@ class Results extends React.Component{
             inputExtension = this.props.location.state.fileName.split('.').pop();
 
             contentOutput = this.props.location.state.result;
-            contentInputImg = this.props.location.state.imgUrl;
+            contentInputImg = this.props.location.state.inputUrl;
             contentInputText = this.props.location.state.input;
 
             var executionTime = this.props.location.state.executionTime;

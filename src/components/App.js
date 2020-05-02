@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.scss';
+import '../css/app.scss';
 
-import Description from './components/home/description'
-import InputZone from './components/home/inputZone'
+import Description from './homePage/description'
+import InputZone from './homePage/input/inputZone'
 
 
 

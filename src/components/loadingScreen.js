@@ -1,5 +1,5 @@
 import React from 'react';
-import './loadingScreen.scss';
+import '../css/loadingScreen.scss';
 import { Redirect } from 'react-router-dom';
 
 class LoadingScreen extends React.Component{
@@ -152,7 +152,7 @@ class LoadingScreen extends React.Component{
                                 inputType: this.props.location.state.inputType,
                                 outputType: this.state.outputType,
                                 input: this.props.location.state.content,
-                                imgUrl: this.props.location.state.imgUrl,
+                                inputUrl: this.props.location.state.inputUrl,
                                 fileName: this.props.location.state.fileName,
                                 result: this.state.result,
                                 executionTime: this.state.executionTime

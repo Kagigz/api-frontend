@@ -57,9 +57,6 @@ class Dropzone extends React.Component{
     }
 
     render(){
-
-        console.log(`Dropzone file uploaded: ${this.props.fileUploaded}`);
-
         return(
             <div
                 className={`input dropzone ${this.state.hightlight ? "dropzoneHighlight" : ""} ${this.props.fileUploaded ? "hidden": ""}`}

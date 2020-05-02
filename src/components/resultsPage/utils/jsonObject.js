@@ -12,7 +12,6 @@ class JSONObject extends React.Component{
         return (!!o) && (o.constructor === Object);
     }
 
-
     render(){
 
         let level = parseInt(this.props.level);
@@ -32,7 +31,6 @@ class JSONObject extends React.Component{
                 }
             }
         )
-
 
         return(
         <div>
