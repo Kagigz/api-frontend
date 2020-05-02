@@ -3,9 +3,9 @@
 This project is a ready-to-use front-end app made with ReactJS to be able to test your APIs quickly.
 It can accept several input and output types, and is very easily configurable. Simply set the input and output types as well as your API endpoint in the environment variables, and you're ready to go.
 
-![demo gif 1](https://github.com/Kagigz/api-frontend/demo/demo1.gif)
+![demo gif 1](https://github.com/Kagigz/api-frontend/tree/master/demo/demo1.gif)
 
-![demo gif 2](https://github.com/Kagigz/api-frontend/demo/demo2.gif)
+![demo gif 2](https://github.com/Kagigz/api-frontend/tree/master/demo/demo2.gif)
 
 There's a light and a dark theme available, and you can easily create your own theme: just add a new theme file with the colors of your choosing.
 
