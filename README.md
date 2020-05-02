@@ -1,7 +1,9 @@
 # API Frontend
 
-This project is a ready-to-use frontend app made with ReactJS to be able to test your APIs quickly.
-It is customizable to accept text, json, images or files as input and to return text, json, images or files as output.
+This project is a ready-to-use front-end app made with ReactJS to be able to test your APIs quickly.
+It can accept several input and output types, and is very easily configurable. Simply set the input and output types as well as your API endpoint in the environment variables, and you're ready to go.
+
+There's a dark theme available, a light one coming soon and you can easily create your own theme with your the colors of your choosing.
 
 ## How to use
 
@@ -17,12 +19,15 @@ Create an .env file with the following settings:
 
 ```
 REACT_APP_API_URL="<YOUR_API_ENDPOINT>"
-REACT_APP_INPUT_TYPE="image"
-REACT_APP_OUTPUT_TYPE="image"
+REACT_APP_API_KEY="<YOUR_API_KEY>" // OPTIONAL
+REACT_APP_INPUT_TYPE="<INPUT_TYPE>"
+REACT_APP_OUTPUT_TYPE="<OUTPUT_TYPE>"
 ```
 
-Replace the input and output types with one of the following depending on your use-case:
+Set the input and output types to one of the following depending on your use-case:
 - image
 - json
 - text
-- file
+- file *available soon*
+- audio *available soon*
+- video *available soon*
