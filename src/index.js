@@ -6,7 +6,7 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 
 import App from './components/App';
-import LoadingScreen from './components/LoadingScreen'
+import LoadingScreen from './components/loadingScreen'
 import Results from './components/Results'
 
 import './css/index.scss';
