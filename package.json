@@ -9,7 +9,7 @@
     "bootstrap": "^4.4.1",
     "jquery": "^3.5.0",
     "js-yaml": "^3.13.1",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "popper.js": "^1.16.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
